@@ -4,14 +4,13 @@ import Layout from '../../components/Layout';
 import ContributeForm from '../../components/ContributeForm';
 import Campaign from '../../ethereum/campaign';
 import web3 from '../../ethereum/web3';
-import Link from '../../routes';
+import { Link } from '../../routes';
 
 class CampaignShow extends Component {
     static async getInitialProps(props) {
         const campaign = Campaign(props.query.address); // address of the campaign we're trying to show in component
 
         const summary = await campaign.methods.getSummary().call();
-
         return {
             address: props.query.address, 
             minimumContribution: summary[0],
@@ -80,7 +79,7 @@ class CampaignShow extends Component {
 
                     <Grid.Row>
                         <Grid.Column>
-                            <Link route={'/campaigns/' + this.props.address + '/requests'} >
+                            <Link route={"/campaigns/"+this.props.address+"/requests"} >
                                 <a>
                                     <Button primary>View Requests</Button>
                                 </a>

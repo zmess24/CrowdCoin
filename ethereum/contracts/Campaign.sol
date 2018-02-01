@@ -81,8 +81,6 @@ contract Campaign {
         request.complete = true;
     }
 
-    // REDEPLOY
-
     function getSummary() public view returns (uint, uint, uint, uint, address) {
         return (
             minimumContribution,

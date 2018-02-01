@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input, Message, Button } from 'semantic-ui-react';
-import Campaign from '../ethereum/capaign';
+import Campaign from '../ethereum/campaign';
 import web3 from '../ethereum/web3';
 import { Router } from '../routes';
 
@@ -11,7 +11,7 @@ class ContributeForm extends Component {
         loading: false
     }
 
-    onSubmit = async event => {
+    onSubmit = async (event) => {
         event.preventDefault();
 
         const campaign = Campaign(this.props.address);
@@ -30,17 +30,17 @@ class ContributeForm extends Component {
             this.setState({ errorMessage: err.message })
         }
 
-        this.setState({ loading: false })
+        this.setState({ loading: false, value: '' })
     }
 
     render() {
         return (
-            <Form onSubmt={this.onSumbit} error={!!this.state.errorMessage}>
+            <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
                 <Form.Field>
                     <label>Amount to Contribute</label>
                     <Input 
                         value={this.state.value}
-                        onChange={ event => this.setState({ value: this.state.value }) }
+                        onChange={ event => this.setState({ value: event.target.value }) }
                         label="ether" 
                         labelPosition="right" 
                     />
@@ -51,3 +51,5 @@ class ContributeForm extends Component {
         );
     }
 }
+
+export default ContributeForm;

@@ -20,12 +20,12 @@ class RequestNew extends Component {
         return { address };
     }
     
-    onSumbit = async event => {
-        event.preventDefault();
+    onSubmit = async (event) => {
+        event.preventDefault()
 
         const campaign = Campaign(this.props.address);
         const { description, value, recipient} = this.state;
-
+        
         this.setState({ loading: true, errorMessage: '' })
 
         try {
@@ -51,26 +51,26 @@ class RequestNew extends Component {
                 <Link route={'/campaigns/'+this.props.address+'/requests'}>
                     <a>Back</a>
                 </Link>
-                <Form onSumbit={this.onSumbit} error={!!this.state.errorMessage}>
+                <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
                     <Form.Field>
                         <label>Description</label>
                         <Input 
                             value={this.state.description}
-                            onChange={event => this.setState({ description: event.target.description })}
+                            onChange={ event => this.setState({ description: event.target.value }) }
                         />
                     </Form.Field>
                     <Form.Field>
                         <label>Value in Ether</label>
                         <Input 
                             value={this.state.value}
-                            onChange={event => this.setState({ value: event.target.value })}
+                            onChange={ event => this.setState({ value: event.target.value }) }
                         />
                     </Form.Field>
                     <Form.Field>
                         <label>Recipient</label>
                         <Input 
                             value={this.state.recipient}
-                            onChange={event => this.setState({ recipient: event.target.recipient })}
+                            onChange={event => this.setState({ recipient: event.target.value })}
                         />
                     </Form.Field>
 
